@@ -1,0 +1,37 @@
+# Trading Configuration
+trading:
+  exchange: "binance"  # ccxt-compatible exchanges
+  symbols: ["BTC/USDT", "ETH/USDT"]
+  timeframe: "5m"
+  paper_trading: true
+  initial_capital: 10000.0
+
+# Sentiment Sources
+sources:
+  twitter:
+    enabled: true
+    keywords: ["BTC", "Bitcoin", "Ethereum", "ETH"]
+    rate_limit: 450  # requests per 15-min window
+  
+  news:
+    enabled: true
+    apis:
+      - name: "newsapi"
+        priority: 1
+      - name: "alphavantage"
+        priority: 2
+
+# Risk Management
+risk:
+  max_position_size: 0.1  # 10% of capital per trade
+  stop_loss: 0.02  # 2%
+  take_profit: 0.05  # 5%
+  max_daily_trades: 10
+
+# Firebase Configuration
+firebase:
+  project_id: "sentiment-trader"
+  collections:
+    sentiment_data: "market_sentiment"
+    trade_history: "executed_trades"
+    system_state: "trading_state"
